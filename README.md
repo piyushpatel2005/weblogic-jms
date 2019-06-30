@@ -4,4 +4,4 @@ This repository includes examples of JMS message producers and consumers for JMS
 
 For more information check [this reference](https://docs.oracle.com/middleware/1212/wls/JMSPG/implement.htm#JMSPG187)
 
-To check JMS connection information
+To check JMS connection information, read the comments in the code.
