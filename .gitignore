@@ -2,3 +2,7 @@ target/
 .settings/
 .classpath
 .project
+.idea/*
+.idea
+*.iml
+weblogic-jms.iml
