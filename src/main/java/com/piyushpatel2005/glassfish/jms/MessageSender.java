@@ -15,7 +15,7 @@ public class MessageSender {
             ConnectionFactory cf = (ConnectionFactory) ctx.lookup("jms/ConnectionFactory");
 
             connection = cf.createConnection();
-            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
 
             MessageProducer messageProducer = session.createProducer(queue);
 
@@ -31,8 +31,14 @@ public class MessageSender {
             // set delivery mode to non-persistent
 //            messageProducer.setDeliveryDelay(DeliveryMode.NON_PERSISTENT);
             messageProducer.setPriority(7);
-            messageProducer.setTimeToLive(0);
+            messageProducer.setTimeToLive(10000);
             messageProducer.send(message);
+            messageProducer.send(message);
+            messageProducer.send(message);
+
+            // messages will be added to queue only when commit is executed. If one of them fails, then commit will throw exception and no message will be posted.
+            // If error occurs, we can execute session.rollback()
+            session.commit();
 
         } catch (Exception e) {
             System.out.println(e);

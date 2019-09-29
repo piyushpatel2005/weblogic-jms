@@ -14,19 +14,23 @@ public class MessageReceiver {
             ConnectionFactory cf = (ConnectionFactory) ctx.lookup("jms/ConnectionFactory");
 
             connection = cf.createConnection();
-            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
 
             MessageConsumer consumer = session.createConsumer(queue);
 
-            consumer.setMessageListener(new MapMessageListener());
+//            consumer.setMessageListener(new MapMessageListener());
 
             connection.start();
 
             // This method will block until message arrives on queue
             // This requires infinite loop
-//            Message message = consumer.receive();
+            Message message = consumer.receive();
             // This method waits for 10000 milliseconds before timing out
-//            Message message2 = consumer.receive(10000);
+            Message message2 = consumer.receive();
+            Message message3 = consumer.receive();
+
+            // All three messages will be committed only when all three messages are received.
+            session.commit();
 
 //            if (message2 == null) {
 //                System.out.println("No message received in time.");
