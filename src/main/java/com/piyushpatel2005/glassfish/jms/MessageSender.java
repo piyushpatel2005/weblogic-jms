@@ -1,4 +1,4 @@
-    package com.piyushpatel2005.glassfish.jms;
+package com.piyushpatel2005.glassfish.jms;
 
 import javax.jms.*;
 import javax.naming.Context;
@@ -28,15 +28,19 @@ public class MessageSender {
             message.setString("employeeJobRole", "Engineer");
             message.setDouble("employeeSalary", 1000);
 
+            // set delivery mode to non-persistent
+//            messageProducer.setDeliveryDelay(DeliveryMode.NON_PERSISTENT);
+            messageProducer.setPriority(7);
+            messageProducer.setTimeToLive(0);
             messageProducer.send(message);
 
         } catch (Exception e) {
             System.out.println(e);
         } finally {
-            if(connection != null)
+            if (connection != null)
                 try {
                     connection.close();
-                }catch (JMSException e) {
+                } catch (JMSException e) {
                     System.out.println(e);
                 }
             System.exit(0);

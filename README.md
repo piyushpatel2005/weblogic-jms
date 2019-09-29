@@ -13,3 +13,7 @@ There are different types of messages we can send.
 3. ObjectMessage (can be any Java serializable object)
 4. Bytes Message (array of bytes as payload)
 5. StreamMessage (Strings and primitives)
+
+We can set delivery mode, priorities and time to live for messages.
+There are 10 levels of priority ranging from 0 to 9. 0 is the minimum priority. JMS tries to deliver higher-priority messages first but this is not guaranteed.
+Message Expiration time is called "TimeToLive" which is set in milliseconds. The default value is 0 which means it expires in 0 seconds.

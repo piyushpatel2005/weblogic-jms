@@ -22,16 +22,29 @@ public class MessageReceiver {
 
             connection.start();
 
+            // This method will block until message arrives on queue
+            // This requires infinite loop
+//            Message message = consumer.receive();
+            // This method waits for 10000 milliseconds before timing out
+//            Message message2 = consumer.receive(10000);
+
+//            if (message2 == null) {
+//                System.out.println("No message received in time.");
+//            }
+//
+//            MapMessage mapMessage = (MapMessage) message;
+//            System.out.println("Messare received for employee " + mapMessage.getString("employeeName"));
+
         } catch (Exception e) {
             System.out.println(e);
-        } finally {
-            if (connection != null)
-                try {
-                    connection.close();
-                } catch (JMSException e) {
-                    System.out.println(e);
-                }
-            System.exit(0);
+//        } finally {
+//            if (connection != null)
+//                try {
+//                    connection.close();
+//                } catch (JMSException e) {
+//                    System.out.println(e);
+//                }
+//            System.exit(0);
         }
 
     }

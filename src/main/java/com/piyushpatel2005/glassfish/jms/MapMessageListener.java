@@ -13,7 +13,8 @@ public class MapMessageListener implements MessageListener {
 
             try {
                 String name = mapMessage.getString("employeeName");
-                System.out.println("Employee Name received. " + name);
+                int priority = mapMessage.getJMSPriority();
+                System.out.println("Employee Name received. " + name + " with priority of " + priority);
             } catch (JMSException e) {
                 throw new RuntimeException(e);
             }
