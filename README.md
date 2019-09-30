@@ -24,3 +24,7 @@ The second argument in this method has little meaning for the senders, but we ne
 
 On the receiver side, `Session.AUTO_ACKNOWLEDGE` means JMS will auto acknowledge if Listener succeeded without exception.
 We can set `CLIENT_ACKNOWLEDGE` to acknowledge method. However, this method works only with `consumer.receive()` method and not with listener interface.
+
+In JMS, the message sender and message receiver are separate entities and there may be hours of lag between the two processes. When `onMessage()` method throws exception, the server transfers the message to **Dead Message Queue** (DMQ). If the messages is of unexpected type, those messages are called poisonous messages and are also routed to DMQ.
+
+If an exception is thrown from a receiver code, we can ask JMS provider to redeliver for specific number of times or after delaying for specific amount of time.
